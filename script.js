@@ -15,4 +15,7 @@ function addBookToLibrary() {
 
 // tableEl.addEventListener("click", () => console.log("Table clicked!"))
 
-tableEl.innerHTML += "<tr><td>The Hobbit</td></tr>"
+tableEl.innerHTML += `<tr><td>The Hobbit</td></tr>
+<td>J.R.R. Tolkien</td>
+<td>295 pages,</td>
+<td>not read yet</td>`
