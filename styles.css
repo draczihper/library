@@ -1,14 +1,27 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-table, tr, th, td{
-    border: 1px solid #000;
-    border-collapse: collapse;
+body {
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+table,
+tr,
+th,
+td {
+  border: 1px solid #000;
+  border-collapse: collapse;
 }
 
 th {
-    width: 200px;
+  width: 200px;
 }
