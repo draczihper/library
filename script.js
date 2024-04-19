@@ -1,9 +1,33 @@
 const bookContainerEl = document.querySelector("#book-container");
 const tableEl = document.querySelector("#table");
-// const title = document.querySelector("#title");
-// const author = document.querySelector("#author");
-// const pages = document.querySelector("#pages");
-// const status = document.querySelector("#readStatus");
+const dialog = document.getElementById("dialog");
+const addBookBtn = document.getElementById("addBook");
+const submitBtn = dialog.querySelector("#submit");
+const statusEl = dialog.querySelector("#status");
+const titleEl = dialog.querySelector("#title");
+const authorEl = dialog.querySelector("#author");
+const pagesEl = dialog.querySelector("#pages")
+const closeBtn = dialog.querySelector("#close-button");
+
+addBookBtn.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+closeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.close();
+});
+
+if (statusEl.checked) {
+    statusEl.value = true;
+} else {
+    statusEl.value = false;
+}
+
+submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.close(titleEl.value, authorEl.value, pagesEl.value, statusEl.value)
+})
 
 const myLibrary = [
     {
@@ -44,13 +68,19 @@ lib.forEach(book => {
     const row = tableEl.insertRow();
     ['title', 'author', 'pages', 'readStatus'].forEach(prop => {
         const cell = row.insertCell();
-        cell.textContent = book[prop];
+        if(prop === 'readStatus') {
+            cell.textContent = book[prop] ? "Read" : "Not read yet";
+        } else {
+            cell.textContent = book[prop];
+        }
     });
 });
     
 }
 
 addBookToLibrary(myLibrary);
+
+
 
 // tableEl.addEventListener("click", () => console.log("Table clicked!"))
 
