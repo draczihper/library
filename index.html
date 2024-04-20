@@ -13,37 +13,36 @@
       <div id="book-container">
         <h2>Library Catalogue</h2>
         <table id="table">
-          <tr>
+       <!--    <tr>
             <th>Title</th>
             <th>Author</th>
             <th>Pages</th>
             <th>Read Status</th>
           </tr>
-        </table>
+        </table> -->
       </div>
-      <button id="addBook">Add book</button>
-      <dialog id="dialog">
-        <form>
-          <p>Add the book title, author, no.of pages and check if you have read it or no</p>
-          <img src="close.png" alt="cross-mark icon" id="close-button">
-          <label for="title">
-            Title:
-            <input type="text" name="title" id="title">
-          </label>
-          <label for="author">
-            Author:
-            <input type="text" name="author" id="author">
-          </label>
-          <label for="pages">No. of pages:
-            <input type="number" name="pages" id="pages">
-          </label>
-          <label for="readStatus">Have you read the book?:
-            <input type="checkbox" name="readStatus" id="status">
-          </label>
-        </form>
-        <button autofocus id="submit" value="default">Submit</button>
-      </dialog>
-
+      <div id="btn1"><button id="addBook">Add book</button></div>
+        <div id="dialog">
+          <form>
+            <p>Add the book title, author, no.of pages and check if you have read it or no</p>
+            <img src="close.png" alt="cross-mark icon" id="close-button">
+            <label for="title">
+              Title:
+              <input type="text" name="title" id="title">
+            </label>
+            <label for="author">
+              Author:
+              <input type="text" name="author" id="author">
+            </label>
+            <label for="pages">No. of pages:
+              <input type="number" name="pages" id="pages">
+            </label>
+            <label for="readStatus">Have you read the book?:
+              <input type="checkbox" name="readStatus" id="status">
+            </label>
+          </form>
+          <button id="submit-button" value="default">Submit</button>
+        </div>
     </main>
   </body>
 </html>
