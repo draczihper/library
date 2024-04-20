@@ -2,20 +2,26 @@ const bookContainerEl = document.querySelector("#book-container");
 const tableEl = document.querySelector("#table");
 const dialog = document.getElementById("dialog");
 const addBookBtn = document.getElementById("addBook");
-const submitBtn = dialog.querySelector("#submit");
-const statusEl = dialog.querySelector("#status");
-const titleEl = dialog.querySelector("#title");
-const authorEl = dialog.querySelector("#author");
-const pagesEl = dialog.querySelector("#pages")
-const closeBtn = dialog.querySelector("#close-button");
+const submitBtn = document.querySelector("#submit-button");
+const statusEl = document.querySelector("#status");
+const titleEl = document.querySelector("#title");
+const authorEl = document.querySelector("#author");
+const pagesEl = document.querySelector("#pages")
+const closeBtn = document.querySelector("#close-button");
+
+window.onload = (event) => {
+    // dialog.style.display = "none";
+  };
+  
 
 addBookBtn.addEventListener("click", () => {
-    dialog.showModal();
+        dialog.style.display = "block";
 });
 
 closeBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    dialog.close();
+    dialog.style.display = "none";
+    
 });
 
 if (statusEl.checked) {
@@ -78,7 +84,7 @@ lib.forEach(book => {
     
 }
 
-addBookToLibrary(myLibrary);
+// addBookToLibrary(myLibrary);
 
 
 
