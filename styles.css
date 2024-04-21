@@ -10,8 +10,16 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#book-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 table,
@@ -41,16 +49,15 @@ th {
   padding: 5px 10px;
 }
 
-#dialog {
+div#dialog {
   width: 500px;
-  height: 500px;
+  height: 400px;
   padding: 30px;
-  display: flex;
-  flex-direction: column; 
-  align-self: center;
-  justify-self: center;
-  position: absolute;
+  position: relative;
+  transform: translate(-50, -50);
   border: 3px solid #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 #dialog #close-button {
@@ -61,17 +68,32 @@ th {
   margin: 5px;
 }
 
-#dialog #submit-button {
-  width: 60px;
-  
+ button#submit-button {
+  width: 100px;
+  place-self: center;
+  padding: 5px 10px;
+  font-size: 18px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form p {
-  font-size: 16px;
+div#dialog > form > p {
+  font-size: 18px;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
+
+div#dialog > form > p > span {
+  font-weight: 700;
+}
+
+div#dialog > form > label {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+div#dialog >form > label > input {
+  padding: 3px;
+  font-size: 16px;
+}
+
+
