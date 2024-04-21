@@ -1,116 +1,86 @@
 const bookContainerEl = document.querySelector("#book-container");
 const tableEl = document.querySelector("#table");
 const dialog = document.getElementById("dialog");
+const addBookForm = document.querySelector("#dialog-form")
 const addBookBtn = document.getElementById("addBook");
 const submitBtn = document.querySelector("#submit-button");
-const statusEl = document.querySelector("#status");
+const yesStatusEl = document.querySelector("#yesReadStatus");
 const titleEl = document.querySelector("#title");
 const authorEl = document.querySelector("#author");
 const pagesEl = document.querySelector("#pages")
 const closeBtn = document.querySelector("#close-button");
 
 window.onload = (event) => {
-    // dialog.style.display = "none";
+    dialog.style.display = "none";
   };
   
 
 addBookBtn.addEventListener("click", () => {
         dialog.style.display = "block";
+        addBookBtn.style.display = "none"
 });
 
 closeBtn.addEventListener("click", (e) => {
     e.preventDefault();
     dialog.style.display = "none";
-    
+    addBookBtn.style.display = "block";
 });
 
-if (statusEl.checked) {
-    statusEl.value = true;
-} else {
-    statusEl.value = false;
-}
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    dialog.close(titleEl.value, authorEl.value, pagesEl.value, statusEl.value)
-})
+    const title = addBookForm.elements.title.value;
+  const author = addBookForm.elements.author.value;
+  const pages = addBookForm.elements.pages.value;
+  const readStatus = addBookForm.elements.yes.checked;
+    addBookToLibrary(title, author, pages, readStatus);
 
-const myLibrary = [
-    {
-        title: "The Hobbit",
-        author: "J.R.R. Tolkien",
-        pages: 295,
-        readStatus: false,
-    },
-    {
-        title: "The power your subconscious mind",
-        author: "J. Murphy",
-        pages: 222,
-        readStatus: true,
-    },
-    {
-        title: "Think and Grow rich",
-        author: "D. Carnegie",
-        pages: 183,
-        readStatus: false,
-    },
-    {
-        title: "The psychology of money",
-        author: "M. Housel",
-        pages: 188,
-        readStatus: true,
-    }
-
-];
-
-
-function Book() {
-    // the constructor
-}
-
-
-function addBookToLibrary(lib) {
-lib.forEach(book => {
-    const row = tableEl.insertRow();
-    ['title', 'author', 'pages', 'readStatus'].forEach(prop => {
-        const cell = row.insertCell();
-        if(prop === 'readStatus') {
-            cell.textContent = book[prop] ? "Read" : "Not read yet";
-        } else {
-            cell.textContent = book[prop];
-        }
-    });
+    addBookForm.reset();
+    dialog.style.display = "none";
+    addBookBtn.style.display = "block";
+    displayLibrary();
 });
-    
+
+let myLibrary = [];
+
+
+function Book(title, author, pages, readStatus = false) {
+   this.title = title;
+   this.author = author;
+   this.pages = pages;
+   this.readStatus = readStatus;
 }
 
-// addBookToLibrary(myLibrary);
+function addBookToLibrary(title, author, pages, readStatus) {
+    const newBook = new Book(title, author, pages, readStatus);
+    myLibrary.push(newBook);
+}
 
 
+function displayLibrary() {
+    bookContainerEl.innerHTML = '';
+    const table = document.createElement('table');
 
-// tableEl.addEventListener("click", () => console.log("Table clicked!"))
+    const headerRow = table.insertRow();
 
-/* tableEl.innerHTML += `<tr>
-<td>The Hobbit</td>
-<td>J.R.R. Tolkien</td>
-<td>295 pages</td>
-<td>not read yet</td>
-</tr>
-<tr>
-<td>The Power of your subconscious mind</td>
-<td>J. Murphy</td>
-<td>222 pages</td>
-<td>read</td>
-</tr>
-<tr>
-<td>Think and Grow rich</td>
-<td>John Doe</td>
-<td>183 pages</td>
-<td>not read yet</td>
-</tr>
-<tr>
-<td>The psychology of money</td>
-<td>M. Housel</td>
-<td>188</td>
-<td>read</td>
-</tr>` */
+    ['Title', 'Author', 'Pages', 'Read Status'].forEach(colName => {
+        const headerCell = headerRow.insertCell();
+        headerCell.textContent = colName;
+      });
+
+      myLibrary.forEach(book => {
+        const row = table.insertRow();
+        ['title', 'author', 'pages', 'readStatus'].forEach(prop => {
+          const cell = row.insertCell();
+          if (prop === 'readStatus') {
+            cell.textContent = book[prop] ? 'Yes' : 'No';
+          } else {
+            cell.textContent = book[prop];
+          }
+        });
+      });
+
+      bookContainerEl.appendChild(table);
+}
+
+
