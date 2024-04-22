@@ -4,21 +4,19 @@
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
-}
+
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  position: relative;
+  height: 100vh;
 }
 
 #book-container {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 
@@ -33,6 +31,10 @@ td {
 
 th {
   width: 200px;
+}
+
+h2 {
+  /* margin-top: 10px; */
 }
 
 #btn1 {
@@ -53,11 +55,14 @@ div#dialog {
   width: 500px;
   height: 400px;
   padding: 30px;
-  position: relative;
-  transform: translate(-50, -50);
-  border: 3px solid #fff;
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  border: 3px solid #000;
+  z-index: 99;
 }
 
 #dialog #close-button {
