@@ -18,12 +18,15 @@ window.onload = (event) => {
 addBookBtn.addEventListener("click", () => {
         dialog.style.display = "block";
         addBookBtn.style.display = "none"
+        bookContainerEl.style.opacity = '0';
 });
 
 closeBtn.addEventListener("click", (e) => {
     e.preventDefault();
     dialog.style.display = "none";
     addBookBtn.style.display = "block";
+    bookContainerEl.style.opacity = '';
+
 });
 
 
@@ -35,9 +38,11 @@ submitBtn.addEventListener("click", (e) => {
   const readStatus = addBookForm.elements.yes.checked;
     addBookToLibrary(title, author, pages, readStatus);
 
-    addBookForm.reset();
+    // addBookForm.reset();
     dialog.style.display = "none";
     addBookBtn.style.display = "block";
+    bookContainerEl.style.opacity = '';
+
     displayLibrary();
 });
 
@@ -51,6 +56,10 @@ function Book(title, author, pages, readStatus = false) {
    this.readStatus = readStatus;
 }
 
+Book.prototype.toggleReadStatus = function() {
+  this.readStatus = !this.readStatus;
+};
+
 function addBookToLibrary(title, author, pages, readStatus) {
     const newBook = new Book(title, author, pages, readStatus);
     myLibrary.push(newBook);
@@ -63,12 +72,14 @@ function displayLibrary() {
 
     const headerRow = table.insertRow();
 
-    ['Title', 'Author', 'Pages', 'Read Status'].forEach(colName => {
+    ['Title', 'Author', 'Pages', 'Read Status', 'Change status', 'Remove'].forEach(colName => {
         const headerCell = headerRow.insertCell();
+        headerCell.style.fontWeight = '700';
         headerCell.textContent = colName;
+
       });
 
-      myLibrary.forEach(book => {
+      myLibrary.forEach((book, index) => {
         const row = table.insertRow();
         ['title', 'author', 'pages', 'readStatus'].forEach(prop => {
           const cell = row.insertCell();
@@ -78,9 +89,28 @@ function displayLibrary() {
             cell.textContent = book[prop];
           }
         });
+
+        const changeStatusButtonCell = row.insertCell();
+        const changeStatusButton = document.createElement('button');
+        changeStatusButton.textContent = book.readStatus ? 'Mark as Unread' : 'Mark as read';
+        changeStatusButton.addEventListener("click", () => {
+          book.toggleReadStatus();
+          displayLibrary();
+        });
+        changeStatusButtonCell.appendChild(changeStatusButton);
+
+        const removeButtonCell = row.insertCell();
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener("click", () => removeBook(index));
+        removeButtonCell.appendChild(removeButton);
       });
 
       bookContainerEl.appendChild(table);
 }
 
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  displayLibrary();
+}
 
