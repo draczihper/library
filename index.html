@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
     <script src="script.js" defer></script>
     <title>Library</title>
   </head>
@@ -12,31 +12,42 @@
     <main>
       <h2>Library Catalogue</h2>
       <div id="btn1"><button id="addBook">Add book</button></div>
-      <div id="book-container">
+      <div id="book-container"></div>
+      <div id="dialog">
+        <form id="dialog-form">
+          <p>
+            Add the book <span>title</span>, <span>author</span>,
+            <span>no.of pages</span> and check if you have read it or no.
+          </p>
+          <img src="close.png" alt="cross-mark icon" id="close-button" />
+          <label for="title">
+            Title:
+            <input type="text" name="title" id="title" required />
+          </label>
+          <label for="author">
+            Author:
+            <input type="text" name="author" id="author" required />
+          </label>
+          <label for="pages"
+            >No. of pages:
+            <input type="number" name="pages" id="pages" required />
+          </label>
+          <label for="readStatus"
+            >Have you read the book?:
+            <label for="yes"
+              >(Yes:
+              <input
+                type="checkbox"
+                name="yes"
+                id="yesReadStatus"
+                value="true"
+                required
+              />)
+            </label>
+          </label>
+        </form>
+        <button id="submit-button">Submit</button>
       </div>
-        <div id="dialog">
-          <form id="dialog-form">
-            <p>Add the book <span>title</span>, <span>author</span>, <span>no.of pages</span> and check if you have read it or no.</p>
-            <img src="close.png" alt="cross-mark icon" id="close-button">
-            <label for="title">
-              Title:
-              <input type="text" name="title" id="title">
-            </label>
-            <label for="author">
-              Author:
-              <input type="text" name="author" id="author">
-            </label>
-            <label for="pages">No. of pages:
-              <input type="number" name="pages" id="pages">
-            </label>
-            <label for="readStatus">Have you read the book?:
-              <label for="yes">(Yes:
-                <input type="checkbox" name="yes" id="yesReadStatus" value="true">)
-              </label>
-            </label>
-          </form>
-          <button id="submit-button">Submit</button>
-        </div>
     </main>
   </body>
 </html>
