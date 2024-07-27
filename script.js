@@ -38,7 +38,6 @@ submitBtn.addEventListener("click", (e) => {
         const pages = addBookForm.elements.pages.value;
         const readStatus = addBookForm.elements.yes.checked;
         addBookToLibrary(title, author, pages, readStatus);
-        console.log(formEl.checkValidity());
         addBookForm.reset();
         dialog.style.display = "none";
         addBookBtn.style.display = "block";
@@ -46,7 +45,6 @@ submitBtn.addEventListener("click", (e) => {
 
         displayLibrary();
     } else {
-        formEl.validationMessage = "Please fill out all fields";
         return;
     }
 });
