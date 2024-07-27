@@ -9,6 +9,8 @@ const titleEl = document.querySelector("#title");
 const authorEl = document.querySelector("#author");
 const pagesEl = document.querySelector("#pages");
 const closeBtn = document.querySelector("#close-button");
+const inputEls = document.querySelectorAll("input");
+const formEl = document.querySelector("form");
 
 window.onload = (event) => {
     dialog.style.display = "none";
@@ -29,19 +31,22 @@ closeBtn.addEventListener("click", (e) => {
 });
 
 submitBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const title = addBookForm.elements.title.value;
-    const author = addBookForm.elements.author.value;
-    const pages = addBookForm.elements.pages.value;
-    const readStatus = addBookForm.elements.yes.checked;
-    addBookToLibrary(title, author, pages, readStatus);
+    if (formEl.checkValidity()) {
+        e.preventDefault();
+        const title = addBookForm.elements.title.value;
+        const author = addBookForm.elements.author.value;
+        const pages = addBookForm.elements.pages.value;
+        const readStatus = addBookForm.elements.yes.checked;
+        addBookToLibrary(title, author, pages, readStatus);
+        addBookForm.reset();
+        dialog.style.display = "none";
+        addBookBtn.style.display = "block";
+        bookContainerEl.style.opacity = "";
 
-    addBookForm.reset();
-    dialog.style.display = "none";
-    addBookBtn.style.display = "block";
-    bookContainerEl.style.opacity = "";
-
-    displayLibrary();
+        displayLibrary();
+    } else {
+        return;
+    }
 });
 
 let myLibrary = [];
